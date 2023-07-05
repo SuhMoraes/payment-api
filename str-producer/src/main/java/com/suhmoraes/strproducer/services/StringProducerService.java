@@ -22,8 +22,9 @@ public class StringProducerService {
     public void sendMessage(String message) {
 
         CompletableFuture<SendResult<String, String>> future = kafkaTemplate.send("str-topic", message);
+        log.info("Send Message {}", message);
 
-        future.whenComplete((result, ex) -> {
+       /* future.whenComplete((result, ex) -> {
             if (ex != null) {
                 log.error("Error sending message: {}", ex.getMessage());
                 return;
@@ -34,6 +35,6 @@ public class StringProducerService {
                     result.getRecordMetadata().partition(),
                     result.getRecordMetadata().offset()
             );
-        });
+        });*/
     }
 }
